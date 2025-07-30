@@ -2,7 +2,8 @@
   "name": "shoppingcart",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.com/FlameOfFireX/e-plantShopping",
+  "homepage": "https://FlameOfFireX.github.io/e-plantShopping"
+  ,
   "type": "module",
   "scripts": {
     "dev": "vite",

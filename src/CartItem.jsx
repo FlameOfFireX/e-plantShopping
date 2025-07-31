@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from './CartSlice';
 import './CartItem.css';
 
-const CartItem = ({ onContinueShopping }) => {
+const CartItem = ({ onContinueShopping, onItemRemoved }) => {
   const cart = useSelector(state => state.cart.items);
   const dispatch = useDispatch();
 
@@ -21,30 +21,32 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
-//   const handleDecrement = (item) => {
-//     if (item.quantity > 1) {
-//       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
-//     } else {
-//       dispatch(removeItem({ name: item.name }));
-//     }
-//   };
-
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     } else {
-      dispatch(removeItem(item.name));
+      dispatch(removeItem({ name: item.name }));
+      onItemRemoved?.(item.name);
     }
   };
+
+//   const handleDecrement = (item) => {
+//     if (item.quantity > 1) {
+//       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+//     } else {
+//       dispatch(removeItem(item.name));
+//     }
+//   };
   
 
-//   const handleRemove = (item) => {
-//     dispatch(removeItem({ name: item.name }));
-//   };
-
   const handleRemove = (item) => {
-    dispatch(removeItem(item.name));
+    dispatch(removeItem({ name: item.name }));
+    onItemRemoved?.(item.name);
   };
+
+//   const handleRemove = (item) => {
+//     dispatch(removeItem(item.name));
+//   };
   
 
   return (

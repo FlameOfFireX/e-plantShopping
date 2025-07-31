@@ -21,17 +21,31 @@ const CartItem = ({ onContinueShopping }) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
+//   const handleDecrement = (item) => {
+//     if (item.quantity > 1) {
+//       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+//     } else {
+//       dispatch(removeItem({ name: item.name }));
+//     }
+//   };
+
   const handleDecrement = (item) => {
     if (item.quantity > 1) {
       dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
     } else {
-      dispatch(removeItem({ name: item.name }));
+      dispatch(removeItem(item.name));
     }
   };
+  
+
+//   const handleRemove = (item) => {
+//     dispatch(removeItem({ name: item.name }));
+//   };
 
   const handleRemove = (item) => {
-    dispatch(removeItem({ name: item.name }));
+    dispatch(removeItem(item.name));
   };
+  
 
   return (
     <div className="cart-container">
